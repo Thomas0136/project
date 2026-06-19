@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EASTCSO Student Organization Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="loader" id="loader" aria-label="Loading EASTCSO portal">
+      <div class="loader-orbit"></div>
+      <img src="assets/eastc-logo.png" alt="EASTC logo" />
+      <p>Loading EASTCSO Portal</p>
+    </div>
+
+    <div class="liquid-bg" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="Main navigation">
+        <a class="brand" href="#home">
+          <img src="assets/eastc-logo.png" alt="EASTC logo" />
+          <span>
+            <strong>EASTCSO</strong>
+            <small>Students Organization</small>
+          </span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#leaders">Leaders</a>
+          <a href="#events">Events</a>
+          <a href="#services">Services</a>
+          <a href="#crud">CRUD</a>
+          <a href="#contact">Contact</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+            <span class="theme-icon" aria-hidden="true">Dark</span>
+            <span id="themeLabel">Dark</span>
+          </button>
+        </div>
+      </nav>
+
+      <section class="hero" id="home">
+        <div class="hero-copy glass">
+          <p class="eyebrow">Plan with figures. Lead with service.</p>
+          <h1>EASTC Students Organization Web Portal</h1>
+          <p>
+            A responsive student portal for coordinating events, announcements,
+            leadership updates, services, activities, and communication between
+            students and the administration.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#crud">Manage Records</a>
+            <a class="button ghost" href="#announcements">View Notices</a>
+          </div>
+        </div>
+        <aside class="hero-panel glass">
+          <img src="assets/eastc-logo.png" alt="EASTC official logo" />
+          <dl>
+            <div>
+              <dt>Portal Status</dt>
+              <dd>Live demo</dd>
+            </div>
+            <div>
+              <dt>Records</dt>
+              <dd id="recordCount">0</dd>
+            </div>
+            <div>
+              <dt>Layout</dt>
+              <dd>CSS Grid 2fr / 1fr</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </header>
+
+    <main class="page-grid">
+      <section class="content-column">
+        <section class="section glass" id="about">
+          <p class="section-kicker">About the organization</p>
+          <h2>Student leadership, coordination, and communication</h2>
+          <p>
+            The EASTC Students Organization supports student welfare by
+            coordinating academic, social, sports, cultural, leadership, and
+            community activities. It also helps students receive official
+            announcements and raise important concerns through organized
+            representation.
+          </p>
+          <div class="feature-grid">
+            <article>
+              <h3>Coordination</h3>
+              <p>Schedules activities, student meetings, club sessions, and campus events.</p>
+            </article>
+            <article>
+              <h3>Representation</h3>
+              <p>Connects students with class representatives, leaders, and administration.</p>
+            </article>
+            <article>
+              <h3>Student Welfare</h3>
+              <p>Shares support services, guidance, academic resources, and opportunities.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section glass" id="leaders">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Leadership information</p>
+              <h2>Student organization leaders</h2>
+            </div>
+          </div>
+          <div class="leaders">
+            <article>
+              <img class="leader-photo" src="assets/leaders/president.png" alt="Mario Macha, EASTCSO President" />
+              <span>PRESIDENT</span>
+              <h3>MARIO MACHA</h3>
+              <p>Oversees organization activities and represents the student body.</p>
+            </article>
+            <article>
+              <div class="leader-initial" aria-hidden="true">NM</div>
+              <span>VICE PRESIDENT</span>
+              <h3>NESTA MSOLA</h3>
+              <p>Supports coordination and follows up on council responsibilities.</p>
+            </article>
+            <article>
+              <div class="leader-initial" aria-hidden="true">SL</div>
+              <span>CHIEF SECRETARY</span>
+              <h3>STEVEN LADSLAUS</h3>
+              <p>Prepares meeting records, notices, and official student communication.</p>
+            </article>
+            <article>
+              <div class="leader-initial" aria-hidden="true">TH</div>
+              <span>PRIME MINISTER</span>
+              <h3>TUMAINI HOSEA</h3>
+              <p>Supports transparent planning for budgets and activity resources.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section glass" id="events">
+          <p class="section-kicker">Events and activities</p>
+          <h2>Upcoming student activities</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Date</th>
+                  <th>Venue</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="eventTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section glass" id="crud">
+          <p class="section-kicker">CRUD demonstration</p>
+          <h2>Manage EASTCSO records</h2>
+          <form class="record-form" id="recordForm">
+            <input type="hidden" id="recordId" />
+            <label>
+              Title
+              <input id="title" type="text" placeholder="Example: General Assembly" required />
+            </label>
+            <label>
+              Category
+              <select id="category" required>
+                <option value="Event">Event</option>
+                <option value="Announcement">Announcement</option>
+                <option value="Service">Service</option>
+                <option value="Activity">Activity</option>
+              </select>
+            </label>
+            <label>
+              Date
+              <input id="date" type="date" required />
+            </label>
+            <label>
+              Priority
+              <select id="priority" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </label>
+            <label class="wide">
+              Description
+              <textarea id="description" rows="4" placeholder="Write details for students" required></textarea>
+            </label>
+            <div class="form-actions wide">
+              <button class="button primary" type="submit" id="submitBtn">Create Record</button>
+              <button class="button ghost" type="button" id="resetBtn">Clear</button>
+            </div>
+          </form>
+
+          <div class="toolbar">
+            <label>
+              Search
+              <input id="searchInput" type="search" placeholder="Search records" />
+            </label>
+            <label>
+              Filter
+              <select id="filterCategory">
+                <option value="All">All categories</option>
+                <option value="Event">Events</option>
+                <option value="Announcement">Announcements</option>
+                <option value="Service">Services</option>
+                <option value="Activity">Activities</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="records" id="records"></div>
+        </section>
+      </section>
+
+      <aside class="sidebar-column">
+        <section class="side-card glass" id="announcements">
+          <p class="section-kicker">Announcements</p>
+          <h2>Notice board</h2>
+          <ul id="announcementList" class="notice-list"></ul>
+        </section>
+
+        <section class="side-card glass" id="services">
+          <p class="section-kicker">Student services</p>
+          <h2>Quick support</h2>
+          <ul class="service-list">
+            <li>Academic guidance and class representative updates</li>
+            <li>Clubs, sports, and cultural activity coordination</li>
+            <li>Student welfare and administration communication</li>
+            <li>Event registration and volunteer information</li>
+          </ul>
+        </section>
+
+        <section class="side-card glass">
+          <p class="section-kicker">Useful links</p>
+          <h2>Resources</h2>
+          <div class="resource-links">
+            <a href="https://www.eastc.ac.tz/" target="_blank" rel="noreferrer">EASTC Website</a>
+            <a href="#crud">Submit Activity</a>
+            <a href="#contact">Contact Office</a>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="site-footer glass" id="contact">
+      <div>
+        <h2>EASTCSO Portal</h2>
+        <p>Eastern Africa Statistical Training Centre Students Organization</p>
+      </div>
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/kisanga203@gmail.com" method="POST" target="emailFrame">
+        <input type="hidden" name="_subject" value="New message from EASTCSO Portal" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" id="contactName" name="name" placeholder="Your name" required />
+        <input type="email" id="contactEmail" name="email" placeholder="Email address" required />
+        <textarea id="contactMessage" name="message" rows="3" placeholder="Message" required></textarea>
+        <button class="button primary" type="submit">Send Message</button>
+      </form>
+      <iframe class="email-frame" name="emailFrame" title="Email submission status"></iframe>
+      <p class="copyright">(c) 2026 EASTCSO. Demo project for Web Design and Development.</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
